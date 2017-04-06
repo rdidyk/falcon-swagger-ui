@@ -1,7 +1,7 @@
 import os
 from setuptools import setup
 
-CURRENT_VERSION = '0.0.4'
+CURRENT_VERSION = '0.0.5'
 
 
 def read_requirements(filename):
@@ -51,6 +51,9 @@ setup(
     package_data={
         'falcon_swagger_ui': [
             'README.rst',
+            'requirements.txt',
+            'setup.cfg',
+            'LICENSE',
             'templates/*.html',
             'dist/VERSION',
             'dist/LICENSE',
