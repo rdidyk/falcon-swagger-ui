@@ -1,6 +1,8 @@
 import os
 from setuptools import setup
 
+CURRENT_VERSION = '0.0.4'
+
 
 def read_requirements(filename):
     """Open a requirements file and return list of its lines."""
@@ -16,14 +18,14 @@ def read_file(filename):
 
 setup(
     name='falcon-swagger-ui',
-    version='0.0.3',
+    version=CURRENT_VERSION,
     description='Swagger UI Application for Falcon',
 
     # Get the long description from the README file
-    long_description=read_file('README.md'),
+    long_description=read_file('README.rst'),
 
     url='https://github.com/rdidyk/falcon-swagger-ui',
-    download_url='https://github.com/rdidyk/falcon-swagger-ui/archive/0.0.3.tar.gz',
+    download_url='https://github.com/rdidyk/falcon-swagger-ui/archive/{}.tar.gz'.format(CURRENT_VERSION),
 
     author='Ruslan Didyk',
     author_email='rdidyk@tmgtop.com',
@@ -48,7 +50,7 @@ setup(
 
     package_data={
         'falcon_swagger_ui': [
-            'README.md',
+            'README.rst',
             'templates/*.html',
             'dist/VERSION',
             'dist/LICENSE',

@@ -1,1 +1,0 @@
-/home/spirit/study/falcon-swagger-ui/falcon_swagger_ui/README.md
