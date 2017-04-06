@@ -30,8 +30,6 @@ setup(
     license='MIT',
 
     classifiers=[
-        'Development Status :: 0.0.2 - Alpha',
-
         'Intended Audience :: Developers',
 
         'License :: OSI Approved :: MIT License',
