@@ -16,14 +16,14 @@ def read_file(filename):
 
 setup(
     name='falcon-swagger-ui',
-    version='0.0.2',
+    version='0.0.3',
     description='Swagger UI Application for Falcon',
 
     # Get the long description from the README file
     long_description=read_file('README.md'),
 
     url='https://github.com/rdidyk/falcon-swagger-ui',
-    download_url='https://github.com/rdidyk/falcon-swagger-ui/archive/0.0.2.tar.gz',
+    download_url='https://github.com/rdidyk/falcon-swagger-ui/archive/0.0.3.tar.gz',
 
     author='Ruslan Didyk',
     author_email='rdidyk@tmgtop.com',
