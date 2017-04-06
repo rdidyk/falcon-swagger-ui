@@ -1,0 +1,20 @@
+/.cache
+# Python
+*.egg-info/
+*.egg
+*.pyc
+*.py[cod]
+__pycache__
+
+# Tests.
+.cache
+.coverage
+.tox
+htmlcov
+
+# IDE
+.idea
+.pydevproject
+/build
+.project
+/dist
