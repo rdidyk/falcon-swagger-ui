@@ -17,19 +17,20 @@ def read_file(filename):
 setup(
     name='falcon-swagger-ui',
     version='0.0.1',
-    description='Swagger UI Sink Adapter for Falcon',
+    description='Swagger UI Application for Falcon',
 
     # Get the long description from the README file
     long_description=read_file('README.md'),
 
     url='https://github.com/rdidyk/falcon-swagger-ui',
+    download_url='https://github.com/rdidyk/falcon-swagger-ui/archive/0.0.1.tar.gz',
 
     author='Ruslan Didyk',
     author_email='rdidyk@tmgtop.com',
     license='MIT',
 
     classifiers=[
-        'Development Status :: 1 - Alpha',
+        'Development Status :: 0.0.1 - Alpha',
 
         'Intended Audience :: Developers',
 
