@@ -1,13 +1,7 @@
 import os
 from setuptools import setup
 
-CURRENT_VERSION = '0.0.5'
-
-
-def read_requirements(filename):
-    """Open a requirements file and return list of its lines."""
-    contents = read_file(filename).strip('\n')
-    return contents.split('\n') if contents else []
+CURRENT_VERSION = '0.0.6'
 
 
 def read_file(filename):
@@ -46,12 +40,14 @@ setup(
     include_package_data=True,
     zip_safe=False,
 
-    install_requires=read_requirements('requirements.txt'),
+    install_requires=[
+        'falcon',
+        'Jinja2',
+    ],
 
     package_data={
         'falcon_swagger_ui': [
             'README.rst',
-            'requirements.txt',
             'setup.cfg',
             'LICENSE',
             'templates/*.html',
