@@ -1,7 +1,7 @@
 import os
 from setuptools import setup
 
-CURRENT_VERSION = '0.0.6'
+CURRENT_VERSION = '0.0.7'
 
 
 def read_file(filename):
@@ -37,8 +37,6 @@ setup(
 
     keywords='falcon swagger',
     packages=['falcon_swagger_ui'],
-    include_package_data=True,
-    zip_safe=False,
 
     install_requires=[
         'falcon',
@@ -50,18 +48,9 @@ setup(
             'README.rst',
             'setup.cfg',
             'LICENSE',
-            'templates/*.html',
-            'dist/VERSION',
-            'dist/LICENSE',
-            'dist/README.md',
-            'dist/*.html',
-            'dist/*.js',
-            'dist/*/*.js',
-            'dist/*/*.css',
-            'dist/*/*.gif',
-            'dist/*/*.png',
-            'dist/*/*.ico',
-            'dist/*/*.ttf',
+            'templates/*',
+            'dist/*',
+            'dist/*/*',
         ],
     }
 )
