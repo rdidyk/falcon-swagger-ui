@@ -1,12 +1,23 @@
 import falcon
 from falcon_swagger_ui import register_swaggerui_app
 
-SWAGGER_URL = '/swagger'  # URL for exposing Swagger UI (without trailing '/')
-API_URL = 'http://petstore.swagger.io/v2/swagger.json'  # Our API url (can of course be a local resource)
+SWAGGERUI_URL = '/swagger'  # without trailing '/'
+SCHEMA_URL = 'http://petstore.swagger.io/v2/swagger.json'
+"""
+# For developer environment you can expose a static endpoint like:
+from falcon_swagger_ui import StaticSinkAdapter
 
-application = falcon.API()
+SCHEMA_URL = '/v2/swagger.json'
 
-register_swaggerui_app(application, SWAGGER_URL, API_URL, config={
+app.add_sink(
+    StaticSinkAdapter('path/to/your/swagger/schema.json'), SCHEMA_URL
+)
+
+"""
+
+app = falcon.API()
+
+register_swaggerui_app(app, SWAGGERUI_URL, SCHEMA_URL, config={
     'supportedSubmitMethods': ['get'],
 })
 

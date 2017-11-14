@@ -1,7 +1,7 @@
 import os
 from setuptools import setup
 
-CURRENT_VERSION = '0.0.7'
+CURRENT_VERSION = '0.0.8'
 
 
 def read_file(filename):
@@ -19,7 +19,8 @@ setup(
     long_description=read_file('README.rst'),
 
     url='https://github.com/rdidyk/falcon-swagger-ui',
-    download_url='https://github.com/rdidyk/falcon-swagger-ui/archive/{}.tar.gz'.format(CURRENT_VERSION),
+    download_url='https://github.com/rdidyk/falcon-swagger-ui'
+                 '/archive/{}.tar.gz'.format(CURRENT_VERSION),
 
     author='Ruslan Didyk',
     author_email='rdidyk@tmgtop.com',
