@@ -41,9 +41,11 @@ Example application:
         'supportedSubmitMethods': ['get'],
     })
 
+
 Running the example application:
 
 .. code:: bash
+
     pip install falcon gunicorn jinja2
     gunicorn example:app
 
