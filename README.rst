@@ -4,7 +4,7 @@ falcon-swagger-ui
 Simple Falcon application for adding `Swagger UI`_ to your falcon
 application.
 
-Included Swagger UI version: 2.2.8.
+Included Swagger UI version: v3.10.0
 
 Installation
 ------------
@@ -40,6 +40,13 @@ Example application:
     register_swaggerui_app(app, SWAGGERUI_URL, SCHEMA_URL, config={
         'supportedSubmitMethods': ['get'],
     })
+
+Running the example application:
+
+.. code:: bash
+    pip install falcon gunicorn jinja2
+    gunicorn example.app
+
 
 Configuration
 -------------
