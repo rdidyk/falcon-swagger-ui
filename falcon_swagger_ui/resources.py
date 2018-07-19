@@ -59,7 +59,7 @@ class SwaggerUiResource(object):
         resp.body = self.templates.render('index.html', **self.context)
 
 
-def register_swaggerui_app(app, base_url, api_url, config=None):
+def register_swaggerui_app(app, base_url, api_url, page_title='Swagger UI', favicon_url=None, config=None):
 
     """:type app: falcon.API"""
 
@@ -82,6 +82,8 @@ def register_swaggerui_app(app, base_url, api_url, config=None):
         default_config.update(config)
 
     default_context = {
+        'page_title': page_title,
+        'favicon_url': favicon_url,
         'base_url': base_url,
         'api_url': api_url,
         'app_name': default_config.pop('app_name'),
