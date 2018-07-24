@@ -21,32 +21,30 @@ Example application:
     import falcon
     from falcon_swagger_ui import register_swaggerui_app
 
-    SWAGGERUI_URL = '/swagger'  # without trailing '/'
-    SCHEMA_URL = 'http://petstore.swagger.io/v2/swagger.json'
-    """
-    # For developer environment you can expose a static endpoint like:
-    from falcon_swagger_ui import StaticSinkAdapter
-
-    SCHEMA_URL = '/v2/swagger.json'
-
-    app.add_sink(
-        StaticSinkAdapter('path/to/your/swagger/schema.json'), SCHEMA_URL
-    )
-
-    """
-
     app = falcon.API()
 
-    page_title = 'Falcon Swagger Doc'  # defaults to Swagger UI
-    favicon_url = 'https://falconframework.org/favicon-32x32.png'  # defaults to Swagger Favicon
+    SWAGGERUI_URL = '/swagger'  # without trailing slash
+    SCHEMA_URL = 'http://petstore.swagger.io/v2/swagger.json'
+
+    ### For developer environment you can expose a static endpoint like:
+    # import pathlib
+    #
+    # SCHEMA_URL = '/static/v1/swagger.json'
+    # STATIC_PATH = pathlib.Path(__file__).parent / 'static'
+    #
+    # @see: http://falcon.readthedocs.io/en/stable/api/api.html#falcon.API.add_static_route
+    # app.add_static_route('/static', str(STATIC_PATH))
+    #
+
+    page_title = 'Falcon Swagger Doc'
+    favicon_url = 'https://falconframework.org/favicon-32x32.png'
+
     register_swaggerui_app(
         app, SWAGGERUI_URL, SCHEMA_URL,
         page_title=page_title,
         favicon_url=favicon_url,
         config={'supportedSubmitMethods': ['get'], }
     )
-
-
 
 
 Running the example application:
