@@ -37,9 +37,16 @@ Example application:
 
     app = falcon.API()
 
-    register_swaggerui_app(app, SWAGGERUI_URL, SCHEMA_URL, config={
-        'supportedSubmitMethods': ['get'],
-    })
+    page_title = 'Falcon Swagger Doc'  # defaults to Swagger UI
+    favicon_url = 'https://falconframework.org/favicon-32x32.png'  # defaults to Swagger Favicon
+    register_swaggerui_app(
+        app, SWAGGERUI_URL, SCHEMA_URL,
+        page_title=page_title,
+        favicon_url=favicon_url,
+        config={'supportedSubmitMethods': ['get'], }
+    )
+
+
 
 
 Running the example application:

@@ -17,7 +17,12 @@ app.add_sink(
 
 app = falcon.API()
 
-register_swaggerui_app(app, SWAGGERUI_URL, SCHEMA_URL, config={
-    'supportedSubmitMethods': ['get'],
-})
+page_title = 'Falcon Swagger Doc'
+favicon_url = 'https://falconframework.org/favicon-32x32.png'
+register_swaggerui_app(
+    app, SWAGGERUI_URL, SCHEMA_URL,
+    page_title=page_title,
+    favicon_url=favicon_url,
+    config={'supportedSubmitMethods': ['get'], }
+)
 
