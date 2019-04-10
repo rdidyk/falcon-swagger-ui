@@ -59,7 +59,7 @@ class SwaggerUiResource(object):
         resp.body = self.templates.render('index.html', **self.context)
 
 
-def register_swaggerui_app(app, base_url, api_url, page_title='Swagger UI', favicon_url=None, config=None):
+def register_swaggerui_app(app, swagger_uri, api_url, page_title='Swagger UI', favicon_url=None, config=None, uri_prefix=""):
 
     """:type app: falcon.API"""
 
@@ -84,7 +84,7 @@ def register_swaggerui_app(app, base_url, api_url, page_title='Swagger UI', favi
     default_context = {
         'page_title': page_title,
         'favicon_url': favicon_url,
-        'base_url': base_url,
+        'base_url': uri_prefix + swagger_uri,
         'api_url': api_url,
         'app_name': default_config.pop('app_name'),
         'client_realm': default_config.pop('client_realm'),
@@ -97,10 +97,10 @@ def register_swaggerui_app(app, base_url, api_url, page_title='Swagger UI', favi
 
     app.add_sink(
         StaticSinkAdapter(static_folder),
-        r'%s/(?P<filepath>.*)\Z' % base_url,
+        r'%s/(?P<filepath>.*)\Z' % swagger_uri,
     )
 
     app.add_route(
-        base_url,
+        swagger_uri,
         SwaggerUiResource(templates_folder, default_context)
     )
