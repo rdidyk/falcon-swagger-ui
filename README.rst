@@ -1,8 +1,9 @@
-[![Buy me a coffee][https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png]][https://www.buymeacoffee.com/5xROZDjHE]
-
-
 falcon-swagger-ui
 =================
+
+|nbsp| |pypi-version| |nbsp|
+
+|bmac-button|
 
 Simple Falcon application for adding `Swagger UI`_ to your falcon
 application.
@@ -88,3 +89,14 @@ Application defaults are listed below (should match SwaggerUI defaults).
     }
 
 .. _Swagger UI: https://github.com/swagger-api/swagger-ui
+
+.. |bmac-button| image:: https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png
+   :target: https://www.buymeacoffee.com/5xROZDjHE
+   :alt: Buy Me A Coffee
+
+.. |pypi-version| image:: https://img.shields.io/pypi/v/falcon-swagger-ui.svg
+   :target: https://pypi.org/project/falcon-swagger-ui/
+   :alt: PyPI
+   
+.. |nbsp| unicode:: 0xA0
+   :trim:
