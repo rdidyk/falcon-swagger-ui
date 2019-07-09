@@ -1,3 +1,6 @@
+[![Buy me a coffee][https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png]][https://www.buymeacoffee.com/5xROZDjHE]
+
+
 falcon-swagger-ui
 =================
 
