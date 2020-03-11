@@ -44,8 +44,9 @@ class StaticSinkAdapter(object):
         if not os.path.exists(file_path):
             raise falcon.HTTPNotFound()
         else:
-            resp.stream = open(file_path, 'rb')
-            resp.stream_len = os.path.getsize(file_path)
+            stream = open(file_path, 'rb')
+            stream_len = os.path.getsize(file_path)
+            resp.set_stream(stream, stream_len)
 
 
 class SwaggerUiResource(object):
