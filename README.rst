@@ -8,7 +8,7 @@ falcon-swagger-ui
 Simple Falcon application for adding `Swagger UI`_ to your falcon
 application.
 
-Included Swagger UI version: v3.10.0
+Included Swagger UI version: v3.25.0
 
 Installation
 ------------
