@@ -1,7 +1,7 @@
 import os
 from setuptools import setup
 
-CURRENT_VERSION = '1.1.1'
+CURRENT_VERSION = '1.1.2'
 
 
 def read_file(filename):
@@ -9,6 +9,7 @@ def read_file(filename):
     path = os.path.join(os.path.dirname(__file__), filename)
     with open(path) as f:
         return f.read()
+
 
 setup(
     name='falcon-swagger-ui',
@@ -32,8 +33,9 @@ setup(
         'License :: OSI Approved :: MIT License',
 
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
 
     keywords='falcon swagger',
