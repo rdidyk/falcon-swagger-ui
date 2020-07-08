@@ -32,21 +32,22 @@ class TemplateRenderer(object):
 class StaticSinkAdapter(object):
 
     def __init__(self, static_path):
-        self.static_path = static_path
+        curr_dir = os.path.dirname(os.path.abspath(__file__))
+        self.static_dir = os.path.join(curr_dir, static_path)
 
     def __call__(self, req, resp, filepath):
         resp.content_type = mimetypes.guess_type(filepath)[0]
-        curr_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(
-            os.path.join(curr_dir, self.static_path),
-            filepath
+        file_path = os.path.normpath(
+            os.path.join(self.static_dir, filepath)
         )
+        if not file_path.startswith(self.static_dir + os.sep):
+            raise falcon.HTTPNotFound()
         if not os.path.exists(file_path):
             raise falcon.HTTPNotFound()
-        else:
-            stream = open(file_path, 'rb')
-            stream_len = os.path.getsize(file_path)
-            resp.set_stream(stream, stream_len)
+
+        stream = open(file_path, 'rb')
+        stream_len = os.path.getsize(file_path)
+        resp.set_stream(stream, stream_len)
 
 
 class SwaggerUiResource(object):
