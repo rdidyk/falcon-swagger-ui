@@ -97,10 +97,19 @@ def register_swaggerui_app(app, swagger_uri, api_url, page_title='Swagger UI', f
         'config_json': json.dumps(default_config)
     }
 
-    app.add_sink(
-        StaticSinkAdapter(static_folder),
-        r'%s/(?P<filepath>.*)\Z' % swagger_uri,
-    )
+    if  swagger_uri.endswith('/'):
+        app.add_sink(
+            StaticSinkAdapter(static_folder),
+            r'%s(?P<filepath>.*)\Z' % swagger_uri,
+        )
+    else:
+        app.add_sink(
+            StaticSinkAdapter(static_folder),
+            r'%s/(?P<filepath>.*)\Z' % swagger_uri,
+        )
+
+    if swagger_uri == '/':
+        default_context['base_url'] = uri_prefix
 
     app.add_route(
         swagger_uri,
