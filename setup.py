@@ -1,7 +1,7 @@
 import os
 from setuptools import setup
 
-CURRENT_VERSION = '1.2.1'
+CURRENT_VERSION = '1.2.2'
 
 
 def read_file(filename):
@@ -36,6 +36,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 
     keywords='falcon swagger',
