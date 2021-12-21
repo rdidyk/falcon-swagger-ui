@@ -1,7 +1,7 @@
-import falcon
-from falcon_swagger_ui import register_swaggerui_app
+import falcon.asgi
+from falcon_swagger_ui.asynchronous import register_swaggerui_app
 
-app = falcon.API()
+app = falcon.asgi.App()
 
 SWAGGERUI_URL = '/swagger'  # without trailing '/'
 SCHEMA_URL = 'http://petstore.swagger.io/v2/swagger.json'
