@@ -1,5 +1,5 @@
 import falcon.asgi
-from falcon_swagger_ui.asynchronous import register_swaggerui_app
+from falcon_swagger_ui import register_swaggerui_app
 
 app = falcon.asgi.App()
 
@@ -23,6 +23,7 @@ register_swaggerui_app(
     app, SWAGGERUI_URL, SCHEMA_URL,
     page_title=page_title,
     favicon_url=favicon_url,
-    config={'supportedSubmitMethods': ['get'], }
+    config={'supportedSubmitMethods': ['get'], },
+    is_async=True
 )
 

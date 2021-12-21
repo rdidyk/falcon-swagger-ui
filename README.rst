@@ -8,9 +8,9 @@ falcon-swagger-ui
 Simple Falcon application for adding `Swagger UI`_ to your falcon
 application.
 
-Included Swagger UI version: v3.38.0
+Included Swagger UI version: v4.1.3
 
-Support Falcon 3.0.0
+Support Falcon 3.0.1
 
 Installation
 ------------
@@ -25,9 +25,12 @@ Example application:
 .. code:: python
 
     import falcon
+    import falcon.asgi
     from falcon_swagger_ui import register_swaggerui_app
 
     app = falcon.API()
+    # For async application Usage
+    # app = falcon.asgi.App()
 
     SWAGGERUI_URL = '/swagger'  # without trailing slash
     SCHEMA_URL = 'http://petstore.swagger.io/v2/swagger.json'
@@ -50,6 +53,7 @@ Example application:
         page_title=page_title,
         favicon_url=favicon_url,
         config={'supportedSubmitMethods': ['get'], }
+        is_async=False, # For Async app put True
     )
 
 

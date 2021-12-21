@@ -3,6 +3,7 @@ import json
 import falcon
 import jinja2
 import mimetypes
+import aiofiles
 
 
 class TemplateRenderer(object):
@@ -29,13 +30,13 @@ class TemplateRenderer(object):
         ).get_template(filename)
 
 
-class StaticSinkAdapter(object):
+class StaticSyncSinkAdapter(object):
 
     def __init__(self, static_path):
         curr_dir = os.path.dirname(os.path.abspath(__file__))
         self.static_dir = os.path.join(curr_dir, static_path)
-
-    def __call__(self, req, resp, filepath):
+    
+    def _check_for_folder(self, resp, filepath):
         resp.content_type = mimetypes.guess_type(filepath)[0]
         file_path = os.path.normpath(
             os.path.join(self.static_dir, filepath)
@@ -44,13 +45,26 @@ class StaticSinkAdapter(object):
             raise falcon.HTTPNotFound()
         if not os.path.exists(file_path):
             raise falcon.HTTPNotFound()
+        return file_path
+
+    def __call__(self, req, resp, filepath):
+        
+        file_path = self._check_for_folder(resp, filepath)
 
         stream = open(file_path, 'rb')
         stream_len = os.path.getsize(file_path)
         resp.set_stream(stream, stream_len)
 
 
-class SwaggerUiResource(object):
+class StaticAsyncSinkAdapter(StaticSyncSinkAdapter):
+
+    async def __call__(self, req, resp, filepath):
+
+        file_path = self._check_for_folder(resp, filepath)
+        resp.stream = await aiofiles.open(file_path, 'rb')
+
+
+class SwaggerUiSyncResource(object):
 
     def __init__(self, templates_folder, default_context):
         self.templates = TemplateRenderer(templates_folder)
@@ -61,7 +75,13 @@ class SwaggerUiResource(object):
         resp.text = self.templates.render('index.html', **self.context)
 
 
-def register_swaggerui_app(app, swagger_uri, api_url, page_title='Swagger UI', favicon_url=None, config=None, uri_prefix=""):
+class SwaggerUiAsyncResource(SwaggerUiSyncResource):
+
+    async def on_get(self, req, resp):
+        super().on_get(req, resp)
+
+
+def register_swaggerui_app(app, swagger_uri, api_url, page_title='Swagger UI', favicon_url=None, config=None, uri_prefix="", is_async=False):
 
     """:type app: falcon.API"""
 
@@ -97,14 +117,21 @@ def register_swaggerui_app(app, swagger_uri, api_url, page_title='Swagger UI', f
         'config_json': json.dumps(default_config)
     }
 
+    if is_async:
+        class_skin_name = StaticAsyncSinkAdapter
+        class_swagger_ui_name = SwaggerUiAsyncResource
+    else:
+        class_skin_name = StaticSyncSinkAdapter
+        class_swagger_ui_name = SwaggerUiAsyncResource
+
     if  swagger_uri.endswith('/'):
         app.add_sink(
-            StaticSinkAdapter(static_folder),
+            class_skin_name(static_folder),
             r'%s(?P<filepath>.*)\Z' % swagger_uri,
         )
     else:
         app.add_sink(
-            StaticSinkAdapter(static_folder),
+            class_skin_name(static_folder),
             r'%s/(?P<filepath>.*)\Z' % swagger_uri,
         )
 
@@ -113,5 +140,5 @@ def register_swaggerui_app(app, swagger_uri, api_url, page_title='Swagger UI', f
 
     app.add_route(
         swagger_uri,
-        SwaggerUiResource(templates_folder, default_context)
+        class_swagger_ui_name(templates_folder, default_context)
     )

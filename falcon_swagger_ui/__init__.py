@@ -1,1 +1,1 @@
-from .resources import register_swaggerui_app, StaticSinkAdapter
+from .resources import register_swaggerui_app, StaticSyncSinkAdapter, StaticAsyncSinkAdapter
