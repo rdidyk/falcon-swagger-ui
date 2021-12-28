@@ -19,3 +19,4 @@ htmlcov
 .project
 /dist
 .venv
+.vscode/
