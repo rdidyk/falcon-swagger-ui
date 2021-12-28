@@ -3,8 +3,6 @@ falcon-swagger-ui
 
 |nbsp| |pypi-version| |nbsp|
 
-|bmac-button|
-
 Simple Falcon application for adding `Swagger UI`_ to your falcon
 application.
 
