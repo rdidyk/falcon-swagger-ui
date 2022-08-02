@@ -5,6 +5,7 @@
 *.pyc
 *.py[cod]
 __pycache__
+.python-version
 
 # Tests.
 .cache
