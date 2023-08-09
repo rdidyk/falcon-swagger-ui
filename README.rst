@@ -66,7 +66,7 @@ Configuration
 
 The application supports overloading all Swagger UI configuration
 options that can be JSON serialized. See
-https://github.com/swagger-api/swagger-ui#parameters for options.
+https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md for options.
 
 In addition, some of the OAuth fields are exposed to special variables
 that will be rendered into the relevant function.
